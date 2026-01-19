@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Gift For You!</title>
+    <style>
+        body { background-color: #ffe4e1; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
+        .gift-container { width: 150px; height: 150px; cursor: pointer; position: relative; transform: transform 0.3s; }
+        .gift-container:hover { transform: scale(1.1); }
+        .box-body { width: 100%; height: 100%; background-color: #ff6b6b; position: absolute; bottom: 0; border-radius: 10px; }
+        .box-lid { width: 110%; height: 30px; background-color: #f14757; position: absolute; top: -10px; left: -5%; z-index: 2; transition: transform 0.5s ease; border-radius: 5px; }
+        .ribbon { width: 30px; height: 100%; background-color: #ff2040; position: absolute; left: 50%; transform: translateX(-50%); }
+        #message { display: none; margin-top: 30px; padding: 20px; background-color: white; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); max-width: 80%; text-align: center; animation: fadeIn 1s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        h1 { color: #f14757; }
+    </style>
+</head>
+<body>
+    <h2 id="instruction">Click the gift to open it!🎁</h2>
+    <div class="gift-container" onclick="openGift()">
+        <div class="box-lid" id="lid"><div class="ribbon" style="height: 30px;"></div></div>
+        <div class="box-body"><div class="ribbon"></div></div>
+    </div>
+    <div id="message">
+        <h1>Happy Birthday! 🎉</h1>
+        <p>To my Honeyyy!!!!,💖</p>
+        <p>wishing you the very very happiest birthday!! <b>may all your dreams come true, and always keep smiling. You are such an important part of my life.</p>
+        <p>I hope this year brings you all the happiness you deserve. You’re never alone when you have me! Mimi, i want to be the no.1 in your eyes, although.....i dont know how you feel about me or how you see me, i know sometimes im annoying, that i keep texting you all time, i just,,,, don't want losing you, the time i realised you are so perfect for me was when, i ended up crying. i think it was on the new year day. you were there when i was just crying....and thank you for the time u staying. i know i may not be No 1 in your eyes,,,but i will prove it eventhough i live so far away from you,,,i will do my best!!!!   💫</p>
+        <p><b>from your lovely! 🎁</b></p>
+        <p>—Honey</p>
+    </div>
+    <script>
+        function openGift() {
+            document.getElementById("lid").style.transform = "translateY(100px) rotate(30deg)";
+            document.getElementById("instruction").style.display = "none";
+
+            setTimeout(() => {
+                document.getElementById("message").style.display = "block";
+                confettiEffect();
+            }, 500);
+        }
+
+        function confettiEffect() {
+            for (let i = 0; i < 100; i++) {
+                const div = document.createElement("div");
+                div.style.position = "fixed";
+                div.style.left = Math.random() * 100 + "vw";
+                div.style.top = "0px";
+                div.style.width = "10px";
+                div.style.height = "10px";
+                div.style.backgroundColor = ["#ff6b6b", "#f14757", "#ff2040"][Math.floor(Math.random() * 3)];
+                div.style.borderRadius = "50%";
+                document.body.appendChild(div);
+                div.animate([
+                    { transform: "translateY(0px)" },
+                    { transform: "translateY(100vh)" }
+                ], { duration: 2000 * Math.random() + 3000 });
+                setTimeout(() => div.remove(), 5000);
+            }
+        }
+    </script>
+</body>
+</html> 
